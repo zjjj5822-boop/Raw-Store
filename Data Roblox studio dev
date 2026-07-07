@@ -6,7 +6,7 @@ local CorrectKey = "JOINFERLAINTODAY"
 local DiscordLink = "https://discord.gg/Fg4aqFr6t"
 
 local GameList = {
-    [123456789] = "https://pastebin.com/raw/KODE_PASTEBIN_1",
+    [92416817362629] = "https://pastebin.com/raw/6JiU12K2",
     [987654321] = "https://pastebin.com/raw/KODE_PASTEBIN_2",
     [555444333] = "https://pastebin.com/raw/KODE_PASTEBIN_3",
 }
