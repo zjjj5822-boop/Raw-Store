@@ -1,0 +1,135 @@
+if not game:GetService("Workspace"):FindFirstChild("Characters") or not game:GetService("Workspace"):FindFirstChild("Structures") then
+	return error("HTTP/1.1 404 Not Found - Asset not loaded inside environment", 0)
+end
+
+local CorrectKey = "JOINFERLAINTODAY"
+local DiscordLink = "https://discord.gg/Fg4aqFr6t"
+
+local GameList = {
+    [123456789] = "https://pastebin.com/raw/KODE_PASTEBIN_1",
+    [987654321] = "https://pastebin.com/raw/KODE_PASTEBIN_2",
+    [555444333] = "https://pastebin.com/raw/KODE_PASTEBIN_3",
+}
+
+local CurrentGameID = game.PlaceId
+local TargetScriptURL = GameList[CurrentGameID]
+
+if not TargetScriptURL then
+    game:GetService("Players").LocalPlayer:Kick("Game tidak didukung!")
+    return
+end
+
+local CoreGui = game:GetService("CoreGui")
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "CustomKeySystem"
+ScreenGui.Parent = CoreGui
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 320, 0, 220)
+MainFrame.Position = UDim2.new(0.5, -160, 0.4, -110)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+MainFrame.BorderSizePixel = 0
+MainFrame.Active = true
+MainFrame.Draggable = true 
+MainFrame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = MainFrame
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "FER HUB.WELCOME"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 16
+Title.Font = Enum.Font.SourceSansBold
+Title.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Title.BorderSizePixel = 0
+Title.Parent = MainFrame
+
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.CornerRadius = UDim.new(0, 10)
+TitleCorner.Parent = Title
+
+local TextBox = Instance.new("TextBox")
+TextBox.Size = UDim2.new(0.85, 0, 0, 40)
+TextBox.Position = UDim2.new(0.075, 0, 0.3, 0)
+TextBox.PlaceholderText = "Enter key here..."
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+TextBox.BorderSizePixel = 0
+TextBox.Font = Enum.Font.SourceSans
+TextBox.TextSize = 14
+TextBox.Parent = MainFrame
+
+local TextCorner = Instance.new("UICorner")
+TextCorner.CornerRadius = UDim.new(0, 6)
+TextCorner.Parent = TextBox
+
+local DiscordBtn = Instance.new("TextButton")
+DiscordBtn.Size = UDim2.new(0.4, 0, 0, 45)
+DiscordBtn.Position = UDim2.new(0.075, 0, 0.65, 0)
+DiscordBtn.Text = "Copy Discordbtn"
+DiscordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242) 
+DiscordBtn.Font = Enum.Font.SourceSansBold
+DiscordBtn.TextSize = 14
+DiscordBtn.BorderSizePixel = 0
+DiscordBtn.Parent = MainFrame
+
+local DiscCorner = Instance.new("UICorner")
+DiscCorner.CornerRadius = UDim.new(0, 6)
+DiscCorner.Parent = DiscordBtn
+
+local CheckBtn = Instance.new("TextButton")
+CheckBtn.Size = UDim2.new(0.4, 0, 0, 45)
+CheckBtn.Position = UDim2.new(0.525, 0, 0.65, 0)
+CheckBtn.Text = "Verify Key"
+CheckBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+CheckBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113) 
+CheckBtn.Font = Enum.Font.SourceSansBold
+CheckBtn.TextSize = 14
+CheckBtn.BorderSizePixel = 0
+CheckBtn.Parent = MainFrame
+
+local CheckCorner = Instance.new("UICorner")
+CheckCorner.CornerRadius = UDim.new(0, 6)
+CheckCorner.Parent = CheckBtn
+
+DiscordBtn.MouseButton1Click:Connect(function()
+    setclipboard(DiscordLink)
+    DiscordBtn.Text = "Copied!"
+    task.wait(2)
+    DiscordBtn.Text = "Get Key"
+end)
+
+CheckBtn.MouseButton1Click:Connect(function()
+    if TextBox.Text == CorrectKey then
+        CheckBtn.Text = "Loading..."
+        CheckBtn.BackgroundColor3 = Color3.fromRGB(230, 126, 34)
+        task.wait(1)
+        
+        local success, scriptContent = pcall(function()
+            return game:HttpGet(TargetScriptURL)
+        end)
+        
+        if success and scriptContent then
+            local cleanScript = string.gsub(scriptContent, "^Error 404: Not Found\n", "")
+            ScreenGui:Destroy()
+            loadstring(cleanScript)()
+        else
+            CheckBtn.Text = "Server Error"
+            CheckBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+            task.wait(2)
+            CheckBtn.Text = "Verify Key"
+            CheckBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+        end
+    else
+        CheckBtn.Text = "Wrong Key!"
+        CheckBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+        task.wait(2)
+        CheckBtn.Text = "Verify Key"
+        CheckBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+    end
+end)
