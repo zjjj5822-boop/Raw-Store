@@ -1,23 +1,13 @@
-if not game:GetService("Workspace"):FindFirstChild("Characters") or not game:GetService("Workspace"):FindFirstChild("Structures") then
-	return error("HTTP/1.1 404 Not Found - Asset not loaded inside environment", 0)
-end
-
 local CorrectKey = "JOINFERLAINTODAY"
-local DiscordLink = "https://discord.gg/Fg4aqFr6t"
+local DiscordLink = "https://discord.gg/UsernameLo"
 
 local GameList = {
     [92416817362629] = "https://pastebin.com/raw/6JiU12K2",
-    [987654321] = "https://pastebin.com/raw/KODE_PASTEBIN_2",
-    [555444333] = "https://pastebin.com/raw/KODE_PASTEBIN_3",
+    [987654321] = "https://username-LA.github.io/",
 }
 
 local CurrentGameID = game.PlaceId
 local TargetScriptURL = GameList[CurrentGameID]
-
-if not TargetScriptURL then
-    game:GetService("Players").LocalPlayer:Kick("Game tidak didukung!")
-    return
-end
 
 local CoreGui = game:GetService("CoreGui")
 local ScreenGui = Instance.new("ScreenGui")
@@ -39,7 +29,7 @@ UICorner.Parent = MainFrame
 
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 40)
-Title.Text = "FER HUB.WELCOME"
+Title.Text = "FER HUB"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 16
 Title.Font = Enum.Font.SourceSansBold
@@ -54,7 +44,7 @@ TitleCorner.Parent = Title
 local TextBox = Instance.new("TextBox")
 TextBox.Size = UDim2.new(0.85, 0, 0, 40)
 TextBox.Position = UDim2.new(0.075, 0, 0.3, 0)
-TextBox.PlaceholderText = "Enter key here..."
+TextBox.PlaceholderText = "Enter Key here..."
 TextBox.Text = ""
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -70,7 +60,7 @@ TextCorner.Parent = TextBox
 local DiscordBtn = Instance.new("TextButton")
 DiscordBtn.Size = UDim2.new(0.4, 0, 0, 45)
 DiscordBtn.Position = UDim2.new(0.075, 0, 0.65, 0)
-DiscordBtn.Text = "Copy Discordbtn"
+DiscordBtn.Text = "Copy Discord"
 DiscordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242) 
 DiscordBtn.Font = Enum.Font.SourceSansBold
@@ -110,16 +100,24 @@ CheckBtn.MouseButton1Click:Connect(function()
         CheckBtn.BackgroundColor3 = Color3.fromRGB(230, 126, 34)
         task.wait(1)
         
+        if not TargetScriptURL then
+            CheckBtn.Text = "not supported"
+            CheckBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+            task.wait(2)
+            CheckBtn.Text = "Verify Key"
+            CheckBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+            return
+        end
+        
         local success, scriptContent = pcall(function()
             return game:HttpGet(TargetScriptURL)
         end)
         
         if success and scriptContent then
-            local cleanScript = string.gsub(scriptContent, "^Error 404: Not Found\n", "")
             ScreenGui:Destroy()
-            loadstring(cleanScript)()
+            loadstring(scriptContent)()
         else
-            CheckBtn.Text = "Server Error"
+            CheckBtn.Text = "Error"
             CheckBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
             task.wait(2)
             CheckBtn.Text = "Verify Key"
