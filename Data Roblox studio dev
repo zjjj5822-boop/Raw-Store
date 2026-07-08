@@ -1,5 +1,5 @@
 local CorrectKey = "JOINFERLAINTODAY"
-local DiscordLink = "https://discord.gg/Az3kxECJM"
+local DiscordLink = "https://discord.gg/4v6BBbwEkj"
 
 local GameList = {
     [92416817362629] = "https://pastebin.com/raw/6JiU12K2",
