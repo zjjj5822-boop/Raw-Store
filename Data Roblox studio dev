@@ -4,7 +4,7 @@ local DiscordLink = "https://discord.gg/4v6BBbwEkj"
 local GameList = {
     [92416817362629] = "https://pastebin.com/raw/6JiU12K2",
     [116139828947259] = "https://pastebin.com/raw/23X3EgPh",
-    [14350413280] = "https://pastebin.com/raw/6JiU12K2",",
+    [14350413280] = "https://pastebin.com/raw/6JiU12K2",
 }
 
 local CurrentGameID = game.PlaceId
