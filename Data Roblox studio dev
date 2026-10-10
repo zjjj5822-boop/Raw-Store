@@ -6,6 +6,7 @@ local GameList = {
     [116139828947259] = "https://pastebin.com/raw/23X3EgPh",
     [18180213499] = "https://pastebin.com/raw/5s916id1",
     [107529709251149] = "https://pastebin.com/raw/Cpn28y0a",
+    [128899661081075] = "https://pastebin.com/raw/yznpeLzg",
 }
 
 local CurrentGameID = game.PlaceId
