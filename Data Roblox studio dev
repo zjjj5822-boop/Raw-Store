@@ -556,7 +556,7 @@ end)
 DiscordBtn.MouseButton1Click:Connect(function()
     setclipboard(DiscordLink)
     DiscordBtn.Text = "Copied Link!"
-    ShowNotification("Clipboard", "Discord Link copied to clipboard!", "Info")
+    ShowNotification("Clipboard", "Linkvertise copied to clipboard!", "Info")
     task.wait(1.5)
     DiscordBtn.Text = "Get Key"
 end)
